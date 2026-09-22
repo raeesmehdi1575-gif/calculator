@@ -1,0 +1,27 @@
+name: Calculator CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check calculator file
+        run: |
+          test -f index.html
+          echo "Calculator file exists"
+
+      - name: Check HTML
+        run: |
+          grep -q "<html" index.html
+          echo "HTML check passed"
+
+      - name: CI Success
+        run: echo "Calculator CI completed successfully"
